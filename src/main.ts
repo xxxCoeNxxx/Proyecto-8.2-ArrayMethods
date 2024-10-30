@@ -93,7 +93,7 @@ console.log(obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios(pacientes));
 // Queremos activar el protocolo de urgencia si cualquiera de los pacientes tiene un ritmo cardíaco superior a 100 
 // pulsaciones por minuto y una temperatura corporal superior a 39 grados.
 const activarProtocoloUrgencia = (pacientes: Pacientes[]): boolean => {
-  return pacientes.some((pacientes) => pacientes.temperatura > 39 && pacientes.frecuenciaCardiaca > 100)
+  return pacientes.some((pacientes) => pacientes.temperatura > 39 && pacientes.frecuenciaCardiaca > 100);
 };
 console.log("Activar el protocolo?", activarProtocoloUrgencia(pacientes));
 
@@ -101,7 +101,18 @@ console.log("Activar el protocolo?", activarProtocoloUrgencia(pacientes));
 // El pediatra no puede atender hoy a los pacientes, queremos reasignar los pacientes asignados a la especialidad 
 // de pediatría a la de medico de familia.
 const pacientesMedicoFamiliaYReasignados = (pacientes: Pacientes[]): Pacientes[] => {
-  let pacientesAsignadosAMedicoDeFamilia : Pacientes[] = [];
+  const listasUnidas: Pacientes[] = [];
+  pacientes.forEach((pacientes) => {
+    if (pacientes.especialidad === "Médico de familia" || pacientes.especialidad === "Pediatra") {
+      listasUnidas.push(pacientes);
+    }
+  });
+ return listasUnidas;
+};
+console.log(pacientesMedicoFamiliaYReasignados(pacientes));
+ 
+ 
+  /*  let pacientesAsignadosAMedicoDeFamilia : Pacientes[] = [];
   for (let i = 0; i < pacientes.length; i++) {
     if (pacientes[i].especialidad === "Médico de familia") {
       pacientesAsignadosAMedicoDeFamilia = [pacientes[i], ...pacientesAsignadosAMedicoDeFamilia];
@@ -117,9 +128,9 @@ const pacientesMedicoFamiliaYReasignados = (pacientes: Pacientes[]): Pacientes[]
 
   let listaCompleta : Pacientes[] = [...pacientesAsignadosAMedicoDeFamilia, ...pacientesReasignados]
 
-  return listaCompleta;
-};
-console.log(pacientesMedicoFamiliaYReasignados(pacientes))
+  return listaCompleta; */
+
+
 
 
 
