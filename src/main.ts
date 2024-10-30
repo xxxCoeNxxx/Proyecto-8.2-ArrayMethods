@@ -105,6 +105,11 @@ const pacientesMedicoFamiliaYReasignados = (pacientes: Pacientes[]): Pacientes[]
   pacientes.forEach((pacientes) => {
     if (pacientes.especialidad === "Médico de familia" || pacientes.especialidad === "Pediatra") {
       listasUnidas.push(pacientes);
+  /*     PARA REASIGNAR ESPECIALIDAD
+      listasUnidas.push({
+        ...pacientes,
+        especialidad: "Médico de familia"
+      }); */
     }
   });
  return listasUnidas;
@@ -112,23 +117,12 @@ const pacientesMedicoFamiliaYReasignados = (pacientes: Pacientes[]): Pacientes[]
 console.log(pacientesMedicoFamiliaYReasignados(pacientes));
  
  
-  /*  let pacientesAsignadosAMedicoDeFamilia : Pacientes[] = [];
-  for (let i = 0; i < pacientes.length; i++) {
-    if (pacientes[i].especialidad === "Médico de familia") {
-      pacientesAsignadosAMedicoDeFamilia = [pacientes[i], ...pacientesAsignadosAMedicoDeFamilia];
-    }
-  };
-
-  let pacientesReasignados : Pacientes[] = [];
-  for (let i=0; i < pacientes.length; i++) {
-    if (pacientes[i].especialidad === "Pediatra") {
-      pacientesReasignados = [pacientes[i], ...pacientesReasignados];
-    }
-  }
-
-  let listaCompleta : Pacientes[] = [...pacientesAsignadosAMedicoDeFamilia, ...pacientesReasignados]
-
-  return listaCompleta; */
+// Queremos saber si podemos mandar al Pediatra a casa (si no tiene pacientes asignados), comprobar si en la lista
+// hay algún paciente asignado a pediatría.
+const noHayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
+  
+};
+console.log("Puede irse a casa?", noHayPacientesDePediatria(pacientes));
 
 
 
@@ -138,20 +132,6 @@ console.log(pacientesMedicoFamiliaYReasignados(pacientes));
 
 
 /* 
-
-// Queremos saber si podemos mandar al Pediatra a casa (si no tiene pacientes asignados), comprobar si en la lista hay algún paciente asignado a pediatría
-const noHayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
-  let comprobarSiNoHayPacientesPediatria = true;
-  for (let i = 0; i < pacientes.length; i++) {
-    if (pacientes[i].especialidad === "Pediatra") {
-      comprobarSiNoHayPacientesPediatria = false;
-    }
-  }
-  return comprobarSiNoHayPacientesPediatria;
-};
-console.log("Puede irse a casa?", noHayPacientesDePediatria(pacientes));
-
-
 // Queremos calcular el número total de pacientes que están asignados a la especialidad de Medico de familia, y lo que están asignados a Pediatría y a cardiología
 interface NumeroPacientesPorEspecialidad {
   medicoDeFamilia: number;
